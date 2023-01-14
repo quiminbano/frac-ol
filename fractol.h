@@ -6,14 +6,14 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:16:03 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/11 16:20:32 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:53:38 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <mlx.h>
+# include "mlx/mlx.h"
 # include <math.h>
 # include "libft/libft.h"
 
@@ -27,6 +27,14 @@ typedef struct s_fractol
 	int		line_length;
 	int		endian;
 }			t_fractol;
+
+typedef struct s_complex
+{
+	float	x;
+	float	y;
+	float	x_c;
+	float	y_c;	
+}			t_complex;
 
 int		fcolor(unsigned char t, unsigned char r, unsigned char g, \
 	unsigned char b);

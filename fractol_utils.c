@@ -6,34 +6,58 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:10:50 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/11 16:36:57 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/15 23:53:37 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_redraw(t_fractol *img, int color)
+int	ft_iter_julia(t_complex *n, float x_c, float y_c, int iter)
 {
-	float		x;
-	float		y;
-	float		r;
+	int	i;
 
-	x = -399;
-	y = 0;
-	r = 399;
-	img->img = mlx_new_image(img->mlx, 800, 800);
-	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
-		&(img->line_length), &(img->endian));
-	while (x <= r)
+	i = 0;
+	n->x_i = (0.8 * -1);
+	n->y_i = (0.156);
+	while ((x_c >= -2 && x_c <= 2) && (y_c >= -2 && y_c <= 2) && \
+		(i < iter))
 	{
-		y = sqrt((pow(r, 2)) - (pow(x, 2)));
-		if (y > 799)
-			break ;
-		my_mlx_pixel_put(&(*img), (x + 400), (400 - y), color);
-		my_mlx_pixel_put(&(*img), (x + 400), (400 + y), color);
-		x += 0.01;
+		n->x = ((x_c * x_c) - (y_c * y_c));
+		n->y = (2 * x_c * y_c);
+		n->x += n->x_i;
+		n->y += n->y_i;
+		x_c = n->x;
+		y_c = n->y;
+		i++;
 	}
-	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+	if (i == iter)
+		return (1);
+	else
+		return (0);	
+}
+
+int	ft_iter_mandelbrot(t_complex *n, float x_init, float y_init, int iter)
+{
+	int	i;
+
+	i = 0;
+	n->x_c = 0;
+	n->y_c = 0;
+	while ((n->x_c >= -8 && n->x_c <= 8) && (n->y_c >= -8 && n->y_c <= 8) && \
+		(i < iter))
+	{
+		n->x = ((n->x_c * n->x_c) - (n->y_c * n->y_c));
+		n->y = (2 * n->x_c * n->y_c);
+		n->x += x_init;
+		n->y += y_init;
+		n->x_c = n->x;
+		n->y_c = n->y;
+		i++;
+	}
+	if (i == iter)
+		return (1);
+	else
+		return (0);	
 }
 
 int	fcolor(unsigned char t, unsigned char r, unsigned char g, unsigned char b)

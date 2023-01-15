@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:16:03 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/14 13:53:38 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/15 23:07:19 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_fractol
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		flag;
 }			t_fractol;
 
 typedef struct s_complex
@@ -33,7 +34,9 @@ typedef struct s_complex
 	float	x;
 	float	y;
 	float	x_c;
-	float	y_c;	
+	float	y_c;
+	float	x_i;
+	float	y_i;	
 }			t_complex;
 
 int		fcolor(unsigned char t, unsigned char r, unsigned char g, \
@@ -43,5 +46,7 @@ int		destroy(t_fractol *img);
 int		ft_mouseevent(int button, int x, int y, t_fractol *img);
 int		ft_keyevent(int keycode);
 void	ft_redraw(t_fractol *img, int color);
+int		ft_iter_mandelbrot(t_complex *n, float x_init, float y_init, int iter);
+int		ft_iter_julia(t_complex *n, float x_c, float y_c, int iter);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:39:43 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/11 16:25:50 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/15 23:10:09 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ int	destroy(t_fractol *img)
 
 int	ft_mouseevent(int button, int x, int y, t_fractol *img)
 {
-	if (button == 1 && x <= 800 && y <= 800)
-		ft_redraw(img, fcolor(0, 0, 255, 255));
-	if (button == 2 && x <= 800 && y <= 800)
-		ft_redraw(img, fcolor(0, 255, 0, 255));
+	if (button == 1 && x <= 800 && y <= 600)
+		ft_printf("hello\n");
+	if (button == 2 && x <= 800 && y <= 600)
+		ft_printf("hello\n");
+	ft_printf("%d\n", img->bits_per_pixel);
 	return (button);
 }
 

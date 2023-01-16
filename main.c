@@ -6,13 +6,13 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:46:18 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/15 23:44:58 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:40:31 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_julia_init(t_fractol *img)
+static void	ft_julia_init(t_fractol *img, char **av)
 {
 	float		x;
 	float		y;
@@ -27,9 +27,11 @@ void	ft_julia_init(t_fractol *img)
 	{
 		while (x <= 799)
 		{
-			n.x_i = (((3 * x) / 800) - 2);
-			n.y_i = ((y / 300) - 1);
-			if (ft_iter_julia(&n, n.x_i, n.y_i, 100) == 1)
+			n.x_z = ((x / 200) - 2);
+			n.y_z = ((y / 200) - 1.5);
+			n.x_c = atof(av[2]);
+			n.y_c = atof(av[3]);
+			if (ft_iter(&n, 2, 100) == 1)
 				my_mlx_pixel_put(&(*img), x, y, 0x00FFFFFF);
 			x++;
 		}
@@ -39,7 +41,7 @@ void	ft_julia_init(t_fractol *img)
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 }
 
-void	ft_mandelbrot_init(t_fractol *img)
+static void	ft_mandelbrot_init(t_fractol *img)
 {
 	float		x;
 	float		y;
@@ -54,9 +56,11 @@ void	ft_mandelbrot_init(t_fractol *img)
 	{
 		while (x <= 799)
 		{
-			n.x_i = (((3 * x) / 800) - 2);
-			n.y_i = ((y / 300) - 1);
-			if (ft_iter_mandelbrot(&n, n.x_i, n.y_i, 100) == 1)
+			n.x_c = ((x / 200) - 2);
+			n.y_c = ((y / 200) - 1.5);
+			n.x_z = 0;
+			n.y_z = 0;
+			if (ft_iter(&n, 8, 500) == 1)
 				my_mlx_pixel_put(&(*img), x, y, 0x00FFFFFF);
 			x++;
 		}
@@ -66,38 +70,53 @@ void	ft_mandelbrot_init(t_fractol *img)
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 }
 
-void	ft_checker(t_fractol *img, char **av)
+static void	ft_printerror(void)
 {
-	if ((ft_strncmp(av[1], "mandelbrot", ft_strlen(av[1])) == 0))
+	ft_printf("Fractol: input error\n");
+	ft_printf("Usage:\n");
+	ft_printf("./fractol mandelbrot ");
+	ft_printf("or ");
+	ft_printf("./fractol julia coordinate_real coordinate_imaginary\n");
+}
+
+static int	ft_checker(t_fractol *img, int ac, char **av)
+{
+	if (ft_strncmp(av[1], "julia", 6) == 0 && (ac != 4))
+	{
+		ft_printerror();
+		return (1);
+	}
+	if ((ft_strncmp(av[1], "mandelbrot", 12)) == 0 && (ac != 2))
+	{
+		ft_printerror();
+		return (1);
+	}
+	if (((ft_strncmp(av[1], "mandelbrot", 12)) != 0) && \
+		(ft_strncmp(av[1], "julia", 6) != 0))
+	{
+		ft_printerror();
+		return (1);
+	}
+	if ((ft_strncmp(av[1], "mandelbrot", 12) == 0))
 		img->flag = 0;
 	else
 		img->flag = 1;
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_fractol	img;
 
-	if (ac != 2)
-	{
-		ft_printf("Fractol: Usage ./fractol mandelbrot or ./fractol julia\n");
+	if (ft_checker(&img, ac, av) == 1)
 		return (1);
-	}
-	if (((ft_strncmp(av[1], "mandelbrot", ft_strlen(av[1])) != 0) && \
-		(ft_strncmp(av[1], "julia", ft_strlen(av[1])) != 0)))
-	{
-		ft_printf("Fractol: Usage ./fractol mandelbrot or ./fractol julia\n");
-		return (1);
-	}
 	img.mlx = mlx_init();
 	img.mlx_win = mlx_new_window(img.mlx, 800, 600, "Fract-ol");
-	ft_checker(&img, av);
 	if (img.flag == 0)
 		ft_mandelbrot_init(&img);
 	else
-		ft_julia_init(&img);
-	mlx_mouse_hook(img.mlx_win, &ft_mouseevent, &img);
-	mlx_key_hook(img.mlx_win, &ft_keyevent, &img);
+		ft_julia_init(&img, av);
+	mlx_hook(img.mlx_win, 4, 1L<<2, &ft_mousedownevent, &img);
 	mlx_hook(img.mlx_win, 17, 0, &destroy, &img);
 	mlx_loop(img.mlx);
 	return (0);

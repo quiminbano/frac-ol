@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:16:03 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/16 15:24:52 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/18 09:26:48 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ typedef struct s_complex
 	float	x_z;
 	float	y_z;
 	float	x_c;
-	float	y_c;	
+	float	y_c;
+	float	r;
+	float	im;
+	int		i;	
 }			t_complex;
 
 int		fcolor(unsigned char t, unsigned char r, unsigned char g, \
@@ -45,7 +48,7 @@ int		fcolor(unsigned char t, unsigned char r, unsigned char g, \
 void	my_mlx_pixel_put(t_fractol *img, int x, int y, int color);
 int		destroy(t_fractol *img);
 int		ft_mousedownevent(int button, int x, int y, t_fractol *img);
-int		ft_iter(t_complex *n, float limit, int iter);
+void	ft_iter(t_fractol *img, t_complex *n, float limit, int iter);
 void	ft_julia_move(t_fractol *img, int xm, int ym);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:10:50 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/16 17:23:14 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:32:49 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,36 @@
 
 void	ft_julia_move(t_fractol *img, int xm, int ym)
 {
-	float		x;
-	float		y;
 	t_complex	n;
 
-	x = 0;
-	y = 0;
+	n.r = 0;
+	n.im = 0;
 	mlx_destroy_image(img->mlx, img->img);
 	img->img = mlx_new_image(img->mlx, 800, 600);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
 		&(img->line_length), &(img->endian));
-	while (y <= 599)
+	while (n.im <= 599)
 	{
-		while (x <= 799)
+		while (n.r <= 799)
 		{
-			n.x_z = ((x / 200) - 2);
-			n.y_z = ((y / 200) - 1.5);
+			n.x_z = ((n.r / 200) - 2);
+			n.y_z = ((n.im / 200) - 1.5);
 			n.x_c = (((float)xm / 200) - 2);
 			n.y_c = (((float)ym / 200) - 1.5);
-			if (ft_iter(&n, 2, 100) == 1)
-				my_mlx_pixel_put(&(*img), x, y, 0x00FFFFFF);
-			x++;
+			ft_iter(img, &n, 2, 100);
+			(n.r)++;
 		}
-		y++;
-		x = 0; 
+		(n.im)++;
+		n.r = 0; 
 	}
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 }
 
-int	ft_iter(t_complex *n, float limit, int iter)
+void	ft_iter(t_fractol *img, t_complex *n, float limit, int iter)
 {
-	int	i;
-
-	i = 0;
+	n->i = 0;
 	while ((n->x_z >= (limit * -1) && n->x_z <= limit) && \
-		(n->y_z >= (limit * -1) && n->y_z <= limit) && (i < iter))
+		(n->y_z >= (limit * -1) && n->y_z <= limit) && (n->i < iter))
 	{
 		n->x = ((n->x_z * n->x_z) - (n->y_z * n->y_z));
 		n->y = (2 * n->x_z * n->y_z);
@@ -56,12 +51,14 @@ int	ft_iter(t_complex *n, float limit, int iter)
 		n->y += n->y_c;
 		n->x_z = n->x;
 		n->y_z = n->y;
-		i++;
+		(n->i)++;
 	}
-	if (i == iter)
-		return (1);
-	else
-		return (0);
+	if (n->i == iter)
+		my_mlx_pixel_put(&(*img), n->r, n->im, fcolor(0, 255, 255, 255));
+	if (n->i >= 10 && n->i <= 15)
+		my_mlx_pixel_put(&(*img), n->r, n->im, fcolor(0, 34, 0, 255));
+	if (n->i > 20 && n->i <= 25)
+		my_mlx_pixel_put(&(*img), n->r, n->im, fcolor(0, 0, 255, 255));
 }
 
 int	fcolor(unsigned char t, unsigned char r, unsigned char g, unsigned char b)

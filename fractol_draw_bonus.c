@@ -6,12 +6,11 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:48:29 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 19:10:50 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:26:22 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	ft_checker_coord(t_fractol *img, t_complex *n, float xm, float ym)
 {

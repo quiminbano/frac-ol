@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:46:18 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 19:33:43 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:35:29 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	main(int ac, char **av)
 {
 	t_fractol	img;
 
+	img.signal_key = 0;
 	if (ft_checker(&img, ac, av) == 1)
 		return (1);
 	img.mlx = mlx_init();
@@ -118,10 +119,9 @@ int	main(int ac, char **av)
 	}
 	if (img.signal_key == 0)
 	{
+		img.zoom = 1;
 		img.ud = 0;
 		img.lr = 0;
-		img.xm = 1;
-		img.ym = 1;
 	}
 	mlx_hook(img.mlx_win, 4, 0, &ft_mousedownevent, &img);
 	mlx_key_hook(img.mlx_win, &ft_keydownevent, &img);

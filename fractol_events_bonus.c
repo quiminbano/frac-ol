@@ -6,12 +6,11 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:39:43 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 19:28:59 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:21:42 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	ft_mouse_aux(t_fractol *img, int button, float *zoom)
 {

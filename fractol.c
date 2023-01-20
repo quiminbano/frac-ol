@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:46:18 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 19:07:59 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:23:22 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	main(int ac, char **av)
 {
 	t_fractol	img;
 
-	img.signal_key = 0;
 	if (ft_checker(&img, ac, av) == 1)
 		return (1);
 	img.mlx = mlx_init();

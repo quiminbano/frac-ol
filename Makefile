@@ -6,7 +6,7 @@
 #    By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 14:55:25 by corellan          #+#    #+#              #
-#    Updated: 2024/09/23 11:13:39 by corellan         ###   ########.fr        #
+#    Updated: 2024/09/23 12:51:34 by corellan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,15 @@ FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft/libft.a
 
-MLX = -Lminilibx -lmlx -framework OpenGL -framework AppKit
+ifeq ($(shell uname -s), Darwin)
+	FOLDER = minilibx_macos
+	INCLUDE = -I. -I$(FOLDER)
+	MLX = -L$(FOLDER) -lmlx -framework OpenGL -framework AppKit
+else
+	FOLDER = minilibx_linux
+	INCLUDE = -I. -I/usr/bin -I$(FOLDER)
+	MLX = -L$(FOLDER) -lmlx -L/usr/lib -I$(FOLDER) -lXext -lX11 -lm -lz
+endif
 
 CC = cc
 
@@ -38,19 +46,19 @@ all: $(NAME)
 
 $(NAME): $(OUT)
 		$(MAKE) -C ./libft
-		$(MAKE) -C ./minilibx
+		$(MAKE) -C ./$(FOLDER)
 		$(CC) $(FLAGS) $(OUT) $(LIBFT) $(MLX) -o $(NAME)
 
 bonus: .bonus
 
 .bonus: $(OUT_B)
 		$(MAKE) -C ./libft
-		$(MAKE) -C ./minilibx
+		$(MAKE) -C ./$(FOLDER)
 		$(CC) $(FLAGS) $(OUT_B) $(LIBFT) $(MLX) -o $(NAME)
 		@touch .bonus
 
 %.o: %.c
-		$(CC) $(FLAGS) -I. -Iminilibx -c $< -o $@
+		$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 		$(MAKE) clean -C ./libft
@@ -59,7 +67,7 @@ clean:
 
 fclean: clean
 		$(MAKE) fclean -C ./libft
-		$(MAKE) clean -C ./minilibx
+		$(MAKE) clean -C ./$(FOLDER)
 		rm -f $(NAME)
 		
 re: fclean all

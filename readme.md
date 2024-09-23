@@ -12,8 +12,8 @@
 - Color shifting to customize the fractal's appearance (Bonus)
 - Optional: Other fractals (Multibrot Mandelbrot, Multibrot Julia)(Bonus)
 <p>
-  <img src="https://github.com/user-attachments/assets/93eba5c7-fdf8-4e94-8650-a62e95c39922" alt="fract-ol1" width="200"/>
-  <img src="https://github.com/user-attachments/assets/3a83ff2f-98ae-487e-a015-e18140aee570" alt="fract-ol2" width="200"/>
+  <img src="https://github.com/user-attachments/assets/93eba5c7-fdf8-4e94-8650-a62e95c39922" alt="fract-ol1" width="300"/>
+  <img src="https://github.com/user-attachments/assets/3a83ff2f-98ae-487e-a015-e18140aee570" alt="fract-ol2" width="300"/>
 </p>
 
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: corellan <corellan@student.42.fr>          +#+  +:+       +#+         #
+#    By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 14:55:25 by corellan          #+#    #+#              #
-#    Updated: 2023/01/24 15:02:37 by corellan         ###   ########.fr        #
+#    Updated: 2024/09/23 11:13:39 by corellan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft/libft.a
 
-MLX = -lmlx -framework OpenGL -framework AppKit
+MLX = -Lminilibx -lmlx -framework OpenGL -framework AppKit
 
 CC = cc
 
@@ -38,17 +38,19 @@ all: $(NAME)
 
 $(NAME): $(OUT)
 		$(MAKE) -C ./libft
+		$(MAKE) -C ./minilibx
 		$(CC) $(FLAGS) $(OUT) $(LIBFT) $(MLX) -o $(NAME)
 
 bonus: .bonus
 
 .bonus: $(OUT_B)
 		$(MAKE) -C ./libft
+		$(MAKE) -C ./minilibx
 		$(CC) $(FLAGS) $(OUT_B) $(LIBFT) $(MLX) -o $(NAME)
 		@touch .bonus
 
 %.o: %.c
-		$(CC) $(FLAGS) -I. -c $< -o $@
+		$(CC) $(FLAGS) -I. -Iminilibx -c $< -o $@
 
 clean:
 		$(MAKE) clean -C ./libft
@@ -57,6 +59,7 @@ clean:
 
 fclean: clean
 		$(MAKE) fclean -C ./libft
+		$(MAKE) clean -C ./minilibx
 		rm -f $(NAME)
 		
 re: fclean all

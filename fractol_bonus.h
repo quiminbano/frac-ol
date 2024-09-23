@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:16:03 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/25 16:34:09 by corellan         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:04:02 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_BONUS_H
 # define FRACTOL_BONUS_H
 
-# include <mlx.h>
+# include "mlx.h"
 # include "libft/libft.h"
 
 typedef struct s_fractol

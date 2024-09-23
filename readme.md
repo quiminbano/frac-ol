@@ -24,7 +24,7 @@
 
 This repository already includes a version of Minilibx to work in macOS. However, if you want to try this project in linux, you can click [here](https://github.com/42Paris/minilibx-linux.git). You have to name the folder minilibx_linux to make it work. Keep in mind that the project was developed in macOS, using the macOS version of minilibx. It can be some compatibility errors trying to build the project in linux.
 
-## How can I get and execute the program?
+## How can I get and compile the program?
 
 1. Clone this repository
 ```bash
@@ -43,3 +43,20 @@ Otherwise, you should run
 make bonus
 ```
 
+## How can I execute the program?
+
+To execute the program you must pass the fractal's name as an argument. The available fractals are:
+- Mandelbrot (passed as mandelbrot)
+- Julia (passed as julia)
+- Multibrot (passed as multibrot) (Available in bonus)
+- Filled_Julia (passed as filled_julia)
+
+In case Julia and Filled_Julia, you must also pass as arguments the coordinates to build the fractal. Keep in mind that, these coordinates must be in the range of -2.0 and 2.0.
+
+Examples:
+```bash
+./fractol mandelbrot
+```
+```bash
+./fractol julia -0.8 0.1
+```

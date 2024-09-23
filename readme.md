@@ -22,4 +22,4 @@
 - A C compiler (gcc or clang)
 - Basic knowledge of fractals and complex numbers
 
-This repository already includes a version of Minilibx to work in macOS. If you want to try fract-ol in a linux machine, it is necessary to replace the folder minilibx, with the version for [linux](https://github.com/42Paris/minilibx-linux).
+This repository already includes a version of Minilibx to work in macOS and Linux. minilibx is a library developed by 42. If you want to check it out, you can click [here](https://github.com/42Paris/minilibx-linux.git)

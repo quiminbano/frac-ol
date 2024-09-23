@@ -6,12 +6,24 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:39:43 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 12:34:40 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:46:40 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
+
+void	ft_mouse_aux(t_fractol *img, int button, float *zoom)
+{
+	if (button == 3)
+	{
+		*(zoom) = 1;
+		ft_put_black(&(*img));
+		if (img->flag == 0)
+			ft_mandelbrot_zoom(&(*img), (*zoom));
+		else
+			ft_julia_move_zoom(&(*img), img->xm, img->ym, (*zoom));
+	}
+}
 
 int	destroy(t_fractol *img)
 {
@@ -37,9 +49,9 @@ int	ft_mousedownevent(int button, int x, int y, t_fractol *img)
 	if (button == 4 || button == 5)
 	{
 		if (button == 4)
-			zoom += 0.1;
+			zoom *= 1.1;
 		if (button == 5 && zoom > 0.4)
-			zoom -= 0.1;
+			zoom /= 1.1;
 		ft_put_black(&(*img));
 		if (img->flag == 0)
 			ft_mandelbrot_zoom(&(*img), zoom);
@@ -54,13 +66,7 @@ int	ft_mousedownevent(int button, int x, int y, t_fractol *img)
 		img->ym = y;
 		ft_julia_move_zoom(&(*img), x, y, zoom);
 	}
+	if (button == 3)
+		ft_mouse_aux(&(*img), button, &zoom);
 	return (button);
-}
-
-void	my_mlx_pixel_put(t_fractol *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }

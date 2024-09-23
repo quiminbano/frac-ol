@@ -6,12 +6,11 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:48:29 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 19:43:21 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:49:42 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	ft_checker_coord(t_fractol *img, t_complex *n, float xm, float ym)
 {
@@ -103,7 +102,7 @@ void	ft_julia_move_zoom(t_fractol *img, int xm, int ym, float zoom)
 void	ft_iter(t_fractol *img, t_complex *n)
 {
 	n->i = 0;
-	while (n->i < 100)
+	while (n->i < 200)
 	{
 		n->x = ((n->x_z * n->x_z) - (n->y_z * n->y_z));
 		n->y = (2 * n->x_z * n->y_z);
@@ -115,9 +114,9 @@ void	ft_iter(t_fractol *img, t_complex *n)
 			break ;
 		(n->i)++;
 	}
-	if (n->i == 100)
+	if (n->i == 200)
 		my_mlx_pixel_put(&(*img), n->r, n->im, fcolor(0, 255, 255, 255));
-	if (n->i >= 20 && n->i < 100)
+	if (n->i >= 20 && n->i < 200)
 		my_mlx_pixel_put(&(*img), n->r, n->im, fcolor(0, 0, 0, 0));
 	if (n->i >= 4 && n->i < 20)
 		my_mlx_pixel_put(&(*img), n->r, n->im, fcolor(50, 255, 255, 255));

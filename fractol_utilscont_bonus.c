@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_utils.c                                    :+:      :+:    :+:   */
+/*   fractol_utilscont_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:10:50 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/25 09:39:27 by corellan         ###   ########.fr       */
+/*   Created: 2023/01/22 19:50:32 by corellan          #+#    #+#             */
+/*   Updated: 2023/01/25 09:41:00 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static double	ft_atof_aux(char *str, double number, int i, double sig)
 {
@@ -62,25 +62,40 @@ double	ft_atof(char *str)
 	return (ft_atof_aux(str, number, i, sig));
 }
 
-int	fcolor(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+size_t	ft_argument_checker(char *str)
 {
-	int	tr;
-	int	re;
-	int	gr;
-	int	bl;
+	int	i;
+	int	j;
 
-	tr = ((255 * t) / 100);
-	tr = (unsigned char)tr;
-	re = (int)r;
-	gr = (int)g;
-	bl = (int)b;
-	return (tr << 24 | re << 16 | gr << 8 | bl);
+	i = 0;
+	j = 0;
+	while (str[i] == ' ' || (str[i] >= 8 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		i++;
+		if (str[i] == '\0')
+			return (0);
+	}
+	while ((str[i] <= 57 && str[i] >= 48) || (str[i] == '.'))
+	{
+		if (str[i] == '.')
+			j++;
+		if (str[0] == '.' || (j >= 2))
+			break ;
+		i++;
+	}
+	return (i);
 }
 
-void	my_mlx_pixel_put(t_fractol *img, int x, int y, int color)
+void	ft_check_flags_event(t_fractol *img, float zoom)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (img->flag == 0)
+		man_z(&(*img), zoom, &ft_iter);
+	else if (img->flag == 1)
+		jul_z(&(*img), zoom, &ft_iter);
+	else if (img->flag == 2)
+		man_z(&(*img), zoom, &ft_iter_mult);
+	else
+		jul_z(&(*img), zoom, &ft_iter_mult);
 }

@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:46:18 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/19 23:23:22 by corellan         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:20:11 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	ft_julia_init(t_fractol *img, char **av)
 		{
 			n.x_z = ((n.r / 200) - 2);
 			n.y_z = ((n.im / 200) - 1.5);
-			n.x_c = atof(av[2]);
-			n.y_c = atof(av[3]);
+			n.x_c = ft_atof(av[2]);
+			n.y_c = ft_atof(av[3]);
 			img->i_x = n.x_c;
 			img->i_y = n.y_c;
 			ft_iter(&(*img), &n);
@@ -66,34 +66,33 @@ static void	ft_mandelbrot_init(t_fractol *img)
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 }
 
-static void	ft_printerror(void)
+static int	ft_printerror(void)
 {
 	ft_printf("Fractol: input error\n");
 	ft_printf("Usage:\n");
-	ft_printf("./fractol mandelbrot ");
-	ft_printf("or ");
-	ft_printf("./fractol julia coordinate_real coordinate_imaginary\n");
+	ft_printf("./fractol [fractals]\n\n");
+	ft_printf(" Example:\n ./fractol mandelbrot\n\n");
+	ft_printf("[Fractals] available:\n");
+	ft_printf("-> mandelbrot\n-> julia\n\n");
+	ft_printf("In the case of julia, you must declare ");
+	ft_printf("initial coordinates. For example:\n");
+	ft_printf(" ./fractol julia -0.8 0.1\n\n");
+	ft_printf("The julia set can be iterated between -2 and 2.\n\n");
+	return (1);
 }
 
 static int	ft_checker(t_fractol *img, int ac, char **av)
 {
 	if (ac == 1)
-	{
-		ft_printerror();
-		return (1);
-	}
+		return (ft_printerror());
 	if ((ft_strncmp(av[1], "julia", 6) == 0 && (ac != 4)) || \
 		(ft_strncmp(av[1], "mandelbrot", 12) == 0 && (ac != 2)))
-	{
-		ft_printerror();
-		return (1);
-	}
+		return (ft_printerror());
 	if (((ft_strncmp(av[1], "mandelbrot", 12)) != 0) && \
 		(ft_strncmp(av[1], "julia", 6) != 0))
-	{
-		ft_printerror();
-		return (1);
-	}
+		return (ft_printerror());
+	if (ft_checker_julia(&(*img), av) == -1)
+		return (ft_printerror());
 	if ((ft_strncmp(av[1], "mandelbrot", 12) == 0))
 		img->flag = 0;
 	else

@@ -11,6 +11,9 @@
 - Zoom functionality to explore fractals in detail
 - Color shifting to customize the fractal's appearance (Bonus)
 - Optional: Other fractals (Multibrot Mandelbrot, Multibrot Julia)(Bonus)
-![fract-ol1](https://github.com/user-attachments/assets/93eba5c7-fdf8-4e94-8650-a62e95c39922) ![fract-ol2](https://github.com/user-attachments/assets/3a83ff2f-98ae-487e-a015-e18140aee570)
+<p>
+  <img src="https://github.com/user-attachments/assets/93eba5c7-fdf8-4e94-8650-a62e95c39922" alt="fract-ol1" width="400"/>
+  <img src="https://github.com/user-attachments/assets/3a83ff2f-98ae-487e-a015-e18140aee570" alt="fract-ol2" width="400"/>
+</p>
 
 

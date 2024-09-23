@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:28:40 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/05 10:57:13 by corellan         ###   ########.fr       */
+/*   Updated: 2024/04/18 23:58:47 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 static int	ft_atoi_pos(char const *str, int i, int counter, int neg)
 {
@@ -77,7 +75,7 @@ int	ft_atoi(char const *str)
 	i = 0;
 	neg = 1;
 	counter = 0;
-	while (str[i] == ' ' || (str[i] >= 8 && str[i] <= 13))
+	while (str[i] == ' ' || (str[i] > 8 && str[i] <= 13))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{

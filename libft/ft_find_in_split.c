@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_writer.c                                        :+:      :+:    :+:   */
+/*   ft_find_in_split.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:49:26 by corellan          #+#    #+#             */
-/*   Updated: 2022/11/21 12:00:38 by corellan         ###   ########.fr       */
+/*   Created: 2024/06/01 01:04:03 by corellan          #+#    #+#             */
+/*   Updated: 2024/06/01 01:08:47 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_writer(int *i, char c)
+size_t	ft_find_in_split(char **split, char *needle)
 {
-	write(1, &c, 1);
-	(*i)++;
+	size_t	i;
+
+	i = 0;
+	if (!needle)
+		return (ft_split_length(split));
+	while (split[i])
+	{
+		if (!ft_strcmp(split[i], needle))
+			break ;
+		i++;
+	}
+	return (i);
 }

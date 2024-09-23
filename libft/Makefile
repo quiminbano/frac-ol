@@ -3,43 +3,42 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: corellan <corellan@student.42.fr>          +#+  +:+       +#+         #
+#    By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 12:00:04 by corellan          #+#    #+#              #
-#    Updated: 2023/01/04 12:29:58 by corellan         ###   ########.fr        #
+#    Updated: 2024/06/16 23:18:23 by corellan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
-ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
-ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
-ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
-ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
+SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_free_split.c ft_isalnum.c \
+ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_isspace.c ft_itoa.c \
+ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
+ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_split_length.c \
+ft_strchr.c ft_strcmp.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
+ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
+ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_ultoa_base.c \
+ft_numlength_base.c ft_strjoin_append.c ft_lltoa.c ft_isxdigit.c ft_strtol.c \
+ft_del_mem.c ft_find_in_split.c ft_sitoa.c ft_sultoa_base.c
 
-OUT = ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
-ft_isdigit.o ft_isprint.o ft_itoa.o ft_memchr.o ft_memcmp.o ft_memcpy.o \
-ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_putnbr_fd.o \
-ft_putstr_fd.o ft_split.o ft_strchr.o ft_strdup.o ft_striteri.o ft_strjoin.o \
-ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o \
-ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o
+SRC_B = ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c \
+ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstmap_bonus.c \
+ft_lstnew_bonus.c ft_lstsize_bonus.c
 
-GNL_DIR = get_next_line
+GNL_SRC = $(addprefix gnl/, get_next_line.c get_next_line_utils.c)
 
-PF_DIR = ft_printf
+GNL_OUT = $(GNL_SRC:.c=.o)
 
-GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+PF_SRC = $(addprefix ft_printf/, ft_printf.c ft_printf_utils.c \
+ft_printf_flags.c ft_printf_flags_append.c ft_printf_error.c \
+ft_printf_append.c)
 
-PF_SRC = ft_printf/ft_print_address.c ft_printf/ft_print_hex.c \
-ft_printf/ft_print_hex_u.c ft_printf/ft_printf.c ft_printf/ft_uitoa.c \
-ft_printf/ft_writer.c
+PF_OUT = $(PF_SRC:.c=.o)
 
-GNL_OUT = get_next_line.o get_next_line_utils.o
+OUT = $(SRC:.c=.o)
 
-PF_OUT = ft_print_address.o ft_print_hex.o ft_print_hex_u.o ft_printf.o \
-ft_uitoa.o ft_writer.o
+OUT_B = $(SRC_B:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -48,19 +47,24 @@ CC = cc
 all: $(NAME)
 
 $(NAME): $(OUT) $(GNL_OUT) $(PF_OUT)
-		$(CC) $(FLAGS) -I. -c $(SRC)
-		ar rc $(NAME) $(OUT) $(GNL_OUT) $(PF_OUT)
+		ar rcs $(NAME) $(OUT) $(GNL_OUT) $(PF_OUT)
 
-$(GNL_OUT):
-		$(CC) $(FLAGS) -I$(GNL_DIR) -c $(GNL_SRC)
+bonus: .bonus
 
-$(PF_OUT):
-		$(CC) $(FLAGS) -I$(PF_DIR) -c $(PF_SRC)
+.bonus: $(OUT_B) $(OUT) $(GNL_OUT) $(PF_OUT)
+		ar rcs $(NAME) $(OUT) $(OUT_B) $(GNL_OUT) $(PF_OUT)
+		@touch .bonus
+
+%.o: %.c
+		$(CC) $(FLAGS) -I. -c $< -o $@
 
 clean:
-		rm -f $(OUT) $(GNL_OUT) $(PF_OUT)
+		rm -f $(OUT) $(OUT_B) $(GNL_OUT) $(PF_OUT)
+		@rm -f .bonus
 
 fclean: clean
 		rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all bonus clean fclean

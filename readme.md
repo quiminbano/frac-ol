@@ -22,4 +22,24 @@
 - A C compiler (gcc or clang)
 - Basic knowledge of fractals and complex numbers
 
-This repository already includes a version of Minilibx to work in macOS and Linux. minilibx is a library developed by 42. If you want to check it out, you can click [here](https://github.com/42Paris/minilibx-linux.git)
+This repository already includes a version of Minilibx to work in macOS. However, if you want to try this project in linux, you can click [here](https://github.com/42Paris/minilibx-linux.git). You have to name the folder minilibx_linux to make it work. Keep in mind that the project was developed in macOS, using the macOS version of minilibx. It can be some compatibility errors trying to build the project in linux.
+
+## How can I get and execute the program?
+
+1. Clone this repository
+```bash
+git clone https://github.com/quiminbano/fract-ol.git
+```
+2. In case that you are running the project in macOS, you can skip this step, otherwise you have to clone the latest version of minilibx for linux
+```bash
+git clone https://github.com/42Paris/minilibx-linux.git minilibx_linux
+```
+3. Compile the program. If you want to compile the basic version of fract-ol, you should run in your terminal
+```bash
+make
+```
+Otherwise, you should run
+```bash
+make bonus
+```
+

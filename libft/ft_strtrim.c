@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:08:36 by corellan          #+#    #+#             */
-/*   Updated: 2022/11/06 17:08:01 by corellan         ###   ########.fr       */
+/*   Updated: 2023/10/22 10:33:07 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static char	*ft_strtrim_aux(void)
 {
 	char	*dest;
 
-	dest = (char *)malloc(sizeof(char) * 2);
+	dest = (char *)malloc(sizeof(char) * 1);
 	if (dest == NULL)
 		return (NULL);
-	ft_strlcpy(dest, "", 2);
+	dest[0] = '\0';
 	return (dest);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:01:50 by corellan          #+#    #+#             */
-/*   Updated: 2022/11/08 16:40:27 by corellan         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:16:48 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ static size_t	ft_count_char(char const *str, char c)
 	size_t	i;
 
 	i = 0;
-	while (str[i] == c)
-	{
+	while (str[i] == c && c != 0)
 		i++;
-	}
 	return (i);
 }
 
@@ -56,7 +54,7 @@ static char	**ft_split_free(char **array, size_t i)
 {
 	while (i > 0)
 	{
-		free(array[i--]);
+		free(array[--i]);
 		array[i] = NULL;
 	}
 	free(array);

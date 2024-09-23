@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:10:50 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/25 16:49:11 by corellan         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:25:49 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

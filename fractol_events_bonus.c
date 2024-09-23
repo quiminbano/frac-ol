@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_events_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:39:43 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/22 22:15:04 by corellan         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:25:43 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

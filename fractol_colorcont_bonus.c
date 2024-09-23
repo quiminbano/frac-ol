@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_colorcont_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:52:46 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/25 17:05:36 by corellan         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:25:34 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

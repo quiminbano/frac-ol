@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_init_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 19:18:45 by corellan          #+#    #+#             */
-/*   Updated: 2023/01/24 18:19:45 by corellan         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:25:47 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
